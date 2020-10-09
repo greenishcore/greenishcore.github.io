@@ -29,7 +29,7 @@ footer {
 }
 
 
-@media all and (min-width:753px){
+@media all and (min-width:830px){
 .pic {
   display:none;
 }
@@ -37,7 +37,7 @@ footer {
   display: on;
 }
 }
-@media all and (max-width:753px){
+@media all and (max-width:830px){
 .pic {
   display:on;
 }
