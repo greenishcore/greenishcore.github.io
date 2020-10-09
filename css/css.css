@@ -29,7 +29,7 @@ footer {
 }
 
 
-@media all and (min-width:1080){
+@media all and (min-device-width:1080){
 .pic {
   display:none;
 }
@@ -37,7 +37,7 @@ footer {
   display: on;
 }
 }
-@media all and (max-width:1080px){
+@media all and (max-device-width:1080px){
 .pic {
   display:on;
 }
