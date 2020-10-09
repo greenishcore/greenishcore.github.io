@@ -27,3 +27,21 @@ footer a{
 footer {
   text-align: center;
 }
+
+
+@media all and (min-width:653px){
+.pic {
+  display:none;
+}
+.pdf {
+  display: on;
+}
+}
+@media all and (max-width:653px){
+.pic {
+  display:on;
+}
+.pdf {
+  display: none;
+}
+}
