@@ -62,8 +62,25 @@ h1 {background-color: aliceblue;
 @media all and (max-width:1068px){
 .pic {
   display:on;
+  width:1000px;
 }
 .pdf {
   display: none;
 }
+.h1 {
+    font-size: xx-large;
+}
+.navbar {
+    width: 100%;
+}
+.navbar a{
+    font-size: xx-large;
+}
+.status{
+    font-size: xx-large;
+}
+.footer a{
+    font-size: xx-large;
+}
+
 }
