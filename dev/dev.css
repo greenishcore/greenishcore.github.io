@@ -52,9 +52,7 @@ h1 {background-color: aliceblue;
   padding: 15px;    
 }
 @media all and (min-width:1068px){
-.pic {
-  display:none;
-}
+
 .pdf {
   display: on;
 }
