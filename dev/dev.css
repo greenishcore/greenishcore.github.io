@@ -1,0 +1,69 @@
+.logo {
+   width: 2%;
+   display: block;
+}
+h1 {background-color: aliceblue;
+    display: block;
+    font-family: ' sans-serif,Times New Roman, Times';
+}
+.navbar {
+  background:#808080;
+  opacity: 0.5;
+  display: block;
+  width: 80%;
+  border-radius: 5px;
+  text-align: left;
+  border: 10px ;
+  margin: 35px;
+  padding: 15px;
+  position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+   z-index: 1;
+
+}
+.navbar a{
+  text-decoration: none;
+  color:#000000;
+  display: inline-block;
+}
+.status {
+    position: relative;
+    left:50px;
+}
+.content {
+    position: relative;
+    left:50px;
+}
+.footer a{
+    text-decoration: none;
+    color:#000000;
+}
+.footer {
+  color:#000000;
+  background:#808080;
+  opacity: 1;
+  display: inline-block;
+  width: 100%;
+  
+  text-align: left;
+  border: 10px ;
+  margin: 35px;
+  padding: 15px;    
+}
+@media all and (min-width:1068px){
+.pic {
+  display:none;
+}
+.pdf {
+  display: on;
+}
+}
+@media all and (max-width:1068px){
+.pic {
+  display:on;
+}
+.pdf {
+  display: none;
+}
+}
