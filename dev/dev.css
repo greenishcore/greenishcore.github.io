@@ -44,12 +44,13 @@ h1 {background-color: aliceblue;
   background:#808080;
   opacity: 1;
   display: inline-block;
-  width: 100%;
+  width: 80%;
 
   text-align: left;
   border: 10px ;
   margin: 35px;
   padding: 15px;
+  border-radius: 5px;
 }
 @media all and (min-width:1068px){
 
@@ -72,7 +73,7 @@ h1 {background-color: aliceblue;
     font-size: xx-large;
 }
 .navbar {
-    width: 100%;
+    width: 80%;
 }
 .navbar a{
     font-size: xx-large;
