@@ -8,13 +8,13 @@ h1 {background-color: aliceblue;
     border: 10px;
     margin: 35px;
     padding: 15px;
-    width: 90%;
+    width: 100%;
   }
 .navbar {
   background:#808080;
   opacity: 0.5;
   display: block;
-  width: 90%;
+  width: 100%;
   border-radius: 5px;
   text-align: left;
   border: 10px ;
@@ -48,7 +48,7 @@ h1 {background-color: aliceblue;
   background:#808080;
   opacity: 1;
   display: inline-block;
-  width: 90%;
+  width: 100%;
 
   text-align: left;
   border: 10px ;
