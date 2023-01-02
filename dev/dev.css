@@ -5,7 +5,11 @@
 h1 {background-color: aliceblue;
     display: block;
     font-family: ' sans-serif,Times New Roman, Times';
-}
+    border: 10px;
+    margin: 35px;
+    padding: 15px;
+    width: 80%;
+  }
 .navbar {
   background:#808080;
   opacity: 0.5;
