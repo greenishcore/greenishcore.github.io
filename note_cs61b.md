@@ -96,3 +96,12 @@ for (int i = 0; i < s.length(); i++) {
     System.out.println(letter);
 }
 ```
+
+#### hello world
+
+```java
+public class HelloWorld{
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
