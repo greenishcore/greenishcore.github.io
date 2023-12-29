@@ -2,20 +2,20 @@
    width: 2%;
    display: block;
 }
-h1 {background-color: aliceblue;
-    display: block;
+h1 {background-color: #f0f8ff;
+    display: inline-block;
     font-family: ' sans-serif,Times New Roman, Times';
-    border: 10px;
+    /* border: 10px;
     margin: 35px;
-    padding: 15px;
+    padding: 15px; */
     width: 100%;
   }
 .navbar {
-  background:#808080;
+  background:#f0f6ff;
   opacity: 0.5;
   display: block;
-  width: 95%;
-  border-radius: 5px;
+  width: 100%;
+/*  border-radius: 5px; */
   text-align: left;
   border: 10px ;
   margin: 35px;
@@ -45,16 +45,17 @@ h1 {background-color: aliceblue;
 }
 .footer {
   color:#000000;
-  background:#808080;
+  background:#f0f6ff;
   opacity: 1;
   display: inline-block;
-  width: 95%;
+  width: 100%;
+  font-size: medium;
 
-  text-align: left;
+  /* text-align: left;
   border: 10px ;
   margin: 35px;
-  padding: 15px;
-  border-radius: 5px;
+  padding: 15px; */
+/*  border-radius: 5px; */
 }
 @media all and (min-width:1068px){
 
