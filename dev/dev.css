@@ -2,13 +2,15 @@
    width: 2%;
    display: block;
 }
-h1 {background-color: #f0f8ff;
+h1 {
+  background-color: #f0f8ff;
     display: inline-block;
     font-family: ' sans-serif,Times New Roman, Times';
-    /* border: 10px;
-    margin: 35px;
-    padding: 15px; */
     width: 100%;
+    padding: 15px;
+    text-align: left;
+    /* Center the text */
+    margin: 0;
   }
 .navbar {
   background:#f0f6ff;
