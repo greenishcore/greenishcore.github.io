@@ -381,15 +381,259 @@
 
 
 </p>
-        </div>
-
+    </div>
         <div class="blog-post">
-            <h2>Blog Post Title 2</h2>
+            <h2>基于STM32微控制器的频率计设计</h2>
             <p>Published on: January 15, 2024</p>
-            <img src="path/to/your/image2.jpg" alt="Image 2">
-            <p>This is the content of the second blog post. Add your text here...</p>
+            
+            <p>设计任务：利用STM32微控制器设计一数字频率计，采用LCD显示波形、频率。测量信号频率范围为1Hz-10KHz。
+
+            <img src="..\image\fre_dis.jpg">
+            <img src="..\image\wave_dis.jpg">
+
+
+            程序源码
+            main.c
+            
+            #include "sys.h"
+            #include "delay.h"
+            #include "usart.h"
+            #include "led.h"
+            #include "exti.h"
+            #include "sys.h"
+            #include "delay.h"
+            #include "usart.h"
+            #include "lcd.h"
+            #include "sdram.h"
+            #include "key.h"
+            #include "timer.h"
+            #include "adc.h"
+            u32 pwm_value;
+            int main(void)
+            {
+            u16 adcx;
+            float temp;
+            
+            HAL_Init(); //初始化HAL库
+            Stm32_Clock_Init(360,25,2,8); //设置时钟,180Mhz
+            delay_init(180); //初始化延时函数
+            uart_init(115200); //初始化USART
+            LED_Init(); //初始化LED
+            EXTI_Init(); //外部中断初始化
+            
+            KEY_Init(); //初始化按键
+            SDRAM_Init(); //SDRAM初始化
+            LCD_Init(); //LCD初始化
+            POINT_COLOR=RED;
+            
+            TIM3_PWM_Init(1000-1,9000-1);//90M/90=1M的计数频率，自动重装载为500，那么PWM频率为1M/500=2kHZ
+            
+            MY_ADC_Init();
+            int o;
+            int buf[120];
+            for (o=0;o<360;o++) { buf[o]=0; } POINT_COLOR=RED; LCD_ShowString(10,40,260,32,32,"frquency:");
+                LCD_ShowString(80,80,260,32,16,"Hz"); int i; while(1) { for (i=0;i<120;i++) { buf[i]=adcx; pwm_value=0;
+                HAL_Delay(100); printf(" %d Hz \r\n ",pwm_value);
+            			
+            	
+            		POINT_COLOR=RED;	  
+            		LCD_ShowString(10,40,260,32,32," frquency:"); LCD_ShowxNum(10,80,pwm_value*10,6,16,0);
+                LCD_ShowString(80,80,260,32,16,"Hz"); adcx=Get_Adc_Average(ADC_CHANNEL_5,20);//获取通道5的转换值，20次取平均
+                LCD_ShowxNum(134,130,adcx,4,16,0); //显示ADCC采样后的原始值 temp=(float)adcx*(3.3/4096); //获取计算后的带小数的实际电压值，比如3.1111
+                adcx=temp; //赋值整数部分给adcx变量，因为adcx为u16整形 LCD_ShowxNum(134,150,adcx,1,16,0); //显示电压值的整数部分，3.1111的话，这里就是显示3 temp-=adcx;
+                //把已经显示的整数部分去掉，留下小数部分，比如3.1111-3=0.1111 temp*=1000; //小数部分乘以1000，例如：0.1111就转换为111.1，相当于保留三位小数。
+                LCD_ShowxNum(150,150,temp,3,16,0X80); //显示小数部分（前面转换为了整形显示），这里显示的就是111. LCD_ShowString(142,150,200,16,16,".");
+                if(i!=0) {LCD_DrawLine(10+3*i,600-20*buf[i],10+3*(i-1),600-20*buf[i-1]);} } if (i==120) i=0;LCD_Clear(WHITE); } }
+                exit.c: #include "exti.h" #include "delay.h" #include "led.h" #include "key.h" void EXTI_Init(void) {
+                GPIO_InitTypeDef GPIO_Initure; __HAL_RCC_GPIOA_CLK_ENABLE(); //开启GPIOA时钟 __HAL_RCC_GPIOC_CLK_ENABLE(); //开启GPIOC时钟
+                __HAL_RCC_GPIOH_CLK_ENABLE(); //开启GPIOH时钟 GPIO_Initure.Pin=GPIO_PIN_0; //PA0 GPIO_Initure.Mode=GPIO_MODE_IT_RISING;
+                //上升沿触发 GPIO_Initure.Pull=GPIO_PULLDOWN; HAL_GPIO_Init(GPIOA,&GPIO_Initure); GPIO_Initure.Pin=GPIO_PIN_13; //PC13
+                GPIO_Initure.Mode=GPIO_MODE_IT_FALLING; //下降沿触发 GPIO_Initure.Pull=GPIO_PULLUP; HAL_GPIO_Init(GPIOC,&GPIO_Initure);
+                GPIO_Initure.Pin=GPIO_PIN_2|GPIO_PIN_3; //PH2,3 HAL_GPIO_Init(GPIOH,&GPIO_Initure); //中断线0-PA0
+                HAL_NVIC_SetPriority(EXTI0_IRQn,2,0); //抢占优先级为2，子优先级为0 HAL_NVIC_EnableIRQ(EXTI0_IRQn); //使能中断线0 //中断线2-PH2
+                HAL_NVIC_SetPriority(EXTI2_IRQn,2,1); //抢占优先级为2，子优先级为1 HAL_NVIC_EnableIRQ(EXTI2_IRQn); //使能中断线2 //中断线3-PH3
+                HAL_NVIC_SetPriority(EXTI3_IRQn,2,2); //抢占优先级为2，子优先级为2 HAL_NVIC_EnableIRQ(EXTI3_IRQn); //使能中断线2 //中断线13-PC13
+                HAL_NVIC_SetPriority(EXTI15_10_IRQn,2,3); //抢占优先级为2，子优先级为3 HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); //使能中断线13 } //中断服务函数
+                void EXTI0_IRQHandler(void) { HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);//调用中断处理公用函数 } void EXTI2_IRQHandler(void) {
+                HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);//调用中断处理公用函数 } void EXTI3_IRQHandler(void) {
+                HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);//调用中断处理公用函数 } void EXTI15_10_IRQHandler(void) {
+                HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);//调用中断处理公用函数 } //中断服务程序中需要做的事情 //在HAL库中所有的外部中断服务函数都会调用此函数 //GPIO_Pin:中断引脚号
+                extern int pwm_value; void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) { switch(GPIO_Pin) { case GPIO_PIN_0:
+                if(WK_UP==1) { pwm_value++; } break; } } key.c: #include "key.h" #include "delay.h" //按键初始化函数 void KEY_Init(void) {
+                GPIO_InitTypeDef GPIO_Initure; __HAL_RCC_GPIOA_CLK_ENABLE(); //开启GPIOA时钟 __HAL_RCC_GPIOC_CLK_ENABLE(); //开启GPIOC时钟
+                __HAL_RCC_GPIOH_CLK_ENABLE(); //开启GPIOH时钟 GPIO_Initure.Pin=GPIO_PIN_0; //PA0 GPIO_Initure.Mode=GPIO_MODE_INPUT; //输入
+                GPIO_Initure.Pull=GPIO_PULLDOWN; //下拉 GPIO_Initure.Speed=GPIO_SPEED_HIGH; //高速 HAL_GPIO_Init(GPIOA,&GPIO_Initure);
+                GPIO_Initure.Pin=GPIO_PIN_13; //PC13 GPIO_Initure.Mode=GPIO_MODE_INPUT; //输入 GPIO_Initure.Pull=GPIO_PULLUP; //上拉
+                GPIO_Initure.Speed=GPIO_SPEED_HIGH; //高速 HAL_GPIO_Init(GPIOC,&GPIO_Initure); GPIO_Initure.Pin=GPIO_PIN_2|GPIO_PIN_3;
+                //PH2,3 HAL_GPIO_Init(GPIOH,&GPIO_Initure); } //按键处理函数 //返回按键值 //mode:0,不支持连续按;1,支持连续按; //0，没有任何按键按下 //1，WKUP按下
+                WK_UP //注意此函数有响应优先级,KEY0>KEY1>KEY2>WK_UP!!
+                u8 KEY_Scan(u8 mode)
+                {
+                static u8 key_up=1; //按键松开标志
+                if(mode==1)key_up=1; //支持连按
+                if(key_up&&(KEY0==0||KEY1==0||KEY2==0||WK_UP==1))
+                {
+                delay_ms(10);
+                key_up=0;
+                if(KEY0==0) return KEY0_PRES;
+                else if(KEY1==0) return KEY1_PRES;
+                else if(KEY2==0) return KEY2_PRES;
+                else if(WK_UP==1) return WKUP_PRES;
+                }else if(KEY0==1&&KEY1==1&&KEY2==1&&WK_UP==0)key_up=1;
+                return 0; //无按键按下
+                }
+            
+                timer.c
+            
+                #include "timer.h"
+                #include "led.h"
+            
+                TIM_HandleTypeDef TIM3_Handler; //定时器3PWM句柄
+                TIM_OC_InitTypeDef TIM3_CH4Handler; //定时器3通道4句柄
+            
+                /***************************************************************************
+                ****************************************************************************
+                下面是PWM输出实验相关函数源码
+                ****************************************************************************
+                ****************************************************************************/
+            
+                //TIM3 PWM部分初始化
+                //PWM输出初始化
+                //arr：自动重装值
+                //psc：时钟预分频数
+                void TIM3_PWM_Init(u16 arr,u16 psc)
+                {
+                TIM3_Handler.Instance=TIM3; //定时器3
+                TIM3_Handler.Init.Prescaler=psc; //定时器分频
+                TIM3_Handler.Init.CounterMode=TIM_COUNTERMODE_UP;//向上计数模式
+                TIM3_Handler.Init.Period=arr; //自动重装载值
+                TIM3_Handler.Init.ClockDivision=TIM_CLOCKDIVISION_DIV1;
+                HAL_TIM_PWM_Init(&TIM3_Handler); //初始化PWM
+            
+                TIM3_CH4Handler.OCMode=TIM_OCMODE_PWM1; //模式选择PWM1
+                TIM3_CH4Handler.Pulse=arr/2; //设置比较值,此值用来确定占空比，
+                //默认比较值为自动重装载值的一半,即占空比为50%
+                TIM3_CH4Handler.OCPolarity=TIM_OCPOLARITY_LOW; //输出比较极性为低
+                HAL_TIM_PWM_ConfigChannel(&TIM3_Handler,&TIM3_CH4Handler,TIM_CHANNEL_4);//配置TIM3通道4
+                HAL_TIM_PWM_Start(&TIM3_Handler,TIM_CHANNEL_4);//开启PWM通道4
+                }
+            
+                //定时器底层驱动，时钟使能，引脚配置
+                //此函数会被HAL_TIM_PWM_Init()调用
+                //htim:定时器句柄
+                void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
+                {
+                GPIO_InitTypeDef GPIO_Initure;
+            
+                __HAL_RCC_TIM3_CLK_ENABLE(); //使能定时器3
+                __HAL_RCC_GPIOB_CLK_ENABLE(); //开启GPIOB时钟
+            
+                GPIO_Initure.Pin=GPIO_PIN_1; //PB1
+                GPIO_Initure.Mode=GPIO_MODE_AF_PP; //复用推完输出
+                GPIO_Initure.Pull=GPIO_PULLUP; //上拉
+                GPIO_Initure.Speed=GPIO_SPEED_HIGH; //高速
+                GPIO_Initure.Alternate= GPIO_AF2_TIM3; //PB1复用为TIM3_CH4
+                HAL_GPIO_Init(GPIOB,&GPIO_Initure);
+                }
+            
+            
+                //设置TIM通道4的占空比
+                //compare:比较值
+                void TIM_SetTIM3Compare4(u32 compare)
+                {
+                TIM3->CCR4=compare;
+                }
+            
+                //获取TIM捕获/比较寄存器值
+                u32 TIM_GetTIM3Capture4(void)
+                {
+                return HAL_TIM_ReadCapturedValue(&TIM3_Handler,TIM_CHANNEL_4);
+                }
+            
+                adc.c:
+            
+                #include "adc.h"
+                #include "delay.h"
+                ADC_HandleTypeDef ADC1_Handler;//ADC句柄
+            
+                //初始化ADC
+                //ch: ADC_channels
+                //通道值 0~16取值范围为：ADC_CHANNEL_0~ADC_CHANNEL_16
+                void MY_ADC_Init(void)
+                {
+                ADC1_Handler.Instance=ADC1;
+                ADC1_Handler.Init.ClockPrescaler=ADC_CLOCK_SYNC_PCLK_DIV4; //4分频，ADCCLK=PCLK2/4=90/4=22.5MHZ
+                ADC1_Handler.Init.Resolution=ADC_RESOLUTION_12B; //12位模式
+                ADC1_Handler.Init.DataAlign=ADC_DATAALIGN_RIGHT; //右对齐
+                ADC1_Handler.Init.ScanConvMode=DISABLE; //非扫描模式
+                ADC1_Handler.Init.EOCSelection=DISABLE; //关闭EOC中断
+                ADC1_Handler.Init.ContinuousConvMode=DISABLE; //关闭连续转换
+                ADC1_Handler.Init.NbrOfConversion=1; //1个转换在规则序列中 也就是只转换规则序列1
+                ADC1_Handler.Init.DiscontinuousConvMode=DISABLE; //禁止不连续采样模式
+                ADC1_Handler.Init.NbrOfDiscConversion=0; //不连续采样通道数为0
+                ADC1_Handler.Init.ExternalTrigConv=ADC_SOFTWARE_START; //软件触发
+                ADC1_Handler.Init.ExternalTrigConvEdge=ADC_EXTERNALTRIGCONVEDGE_NONE;//使用软件触发
+                ADC1_Handler.Init.DMAContinuousRequests=DISABLE; //关闭DMA请求
+                HAL_ADC_Init(&ADC1_Handler); //初始化
+                }
+            
+                //ADC底层驱动，引脚配置，时钟使能
+                //此函数会被HAL_ADC_Init()调用
+                //hadc:ADC句柄
+                void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
+                {
+                GPIO_InitTypeDef GPIO_Initure;
+                __HAL_RCC_ADC1_CLK_ENABLE(); //使能ADC1时钟
+                __HAL_RCC_GPIOA_CLK_ENABLE(); //开启GPIOA时钟
+            
+                GPIO_Initure.Pin=GPIO_PIN_5; //PA5
+                GPIO_Initure.Mode=GPIO_MODE_ANALOG; //模拟
+                GPIO_Initure.Pull=GPIO_NOPULL; //不带上下拉
+                HAL_GPIO_Init(GPIOA,&GPIO_Initure);
+                }
+            
+                //获得ADC值
+                //ch: 通道值 0~16，取值范围为：ADC_CHANNEL_0~ADC_CHANNEL_16
+                //返回值:转换结果
+                u16 Get_Adc(u32 ch)
+                {
+                ADC_ChannelConfTypeDef ADC1_ChanConf;
+            
+                ADC1_ChanConf.Channel=ch; //通道
+                ADC1_ChanConf.Rank=1; //第1个序列，序列1
+                ADC1_ChanConf.SamplingTime=ADC_SAMPLETIME_480CYCLES; //采样时间
+                ADC1_ChanConf.Offset=0;
+                HAL_ADC_ConfigChannel(&ADC1_Handler,&ADC1_ChanConf); //通道配置
+            
+                HAL_ADC_Start(&ADC1_Handler); //开启ADC
+            
+                HAL_ADC_PollForConversion(&ADC1_Handler,10); //轮询转换
+            
+                return (u16)HAL_ADC_GetValue(&ADC1_Handler); //返回最近一次ADC1规则组的转换结果
+                }
+                //获取指定通道的转换值，取times次,然后平均
+                //times:获取次数
+                //返回值:通道ch的times次转换结果平均值
+                u16 Get_Adc_Average(u32 ch,u8 times)
+                {
+                u32 temp_val=0;
+                u8 t;
+                for(t=0;t<times;t++) { temp_val+=Get_Adc(ch); delay_ms(0); } return temp_val/times; }
+    
+            </p>
         </div>
     </div>
+
+
+    <div class="blog-post">
+        <h2>Blog Post Title 2</h2>
+        <p>Published on: January 15, 2024</p>
+        <img src="path/to/your/image2.jpg" alt="Image 2">
+        <p>This is the content of the second blog post. Add your text here...</p>
+    </div>
+    </div>
+</div>
+        
 
 
     <div class="footer">
