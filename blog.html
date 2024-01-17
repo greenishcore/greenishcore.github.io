@@ -121,10 +121,266 @@
 
     <div class="content blog-content">
         <div class="blog-post">
-            <h2>Blog Post Title 1</h2>
+            <h2>数字时钟设计</h2>
             <p>Published on: January 10, 2024</p>
             <img src="path/to/your/image1.jpg" alt="Image 1">
-            <p>This is the content of the blog post. Add your text here...</p>
+            <p>1．设计内容
+            （1）选择51单片机，晶振采用12MHz。
+            （2）系统可以按“秒”进行计时。
+            （3）数字时钟可以显示小时（00～23）、分钟（00～59）和秒（00～59）。
+            （4）可通过按键K1来选择设置“小时”、“分钟”和“秒”。设置时可通过“加”和“减”按键（K2、K3）来调整时间；设置过程中时钟停止计时。
+            （5）无键按下3秒钟后，自动进入时钟的计时和显示。
+
+            proteus 仿真图如下：
+            <img src="..\image\51timer.png">
+            <img src="..\image\51timer-2.png">
+            程序源代码：
+    <pre>
+        <xmp>
+#include <reg52.h>
+    #include <string.h>
+        #define uchar unsigned char
+        #define uint unsigned int
+        sbit en = P3^7;
+        sbit rs = P3^4;
+        sbit rw = P3^6;
+
+        sbit k1 = P2^1;
+        sbit k2 = P2^2;
+        sbit k3 = P2^3;
+        sbit k0 = P2^0;
+
+        uchar key;
+        uchar t;
+
+        uchar time[] = {"00:00:00"};
+
+        char hour,minute,second;
+
+        void delay(uint x )
+        {
+            uint i,j;
+            for(i=0;i<x;i++) 
+                for(j=0;j<120;j++); 
+        } 
+        void write_cmd(uchar cmd) 
+        { 
+            rs=0;
+            P0=cmd;
+            delay(5);
+            en=1;
+            delay(5);
+            en=0;
+            } 
+        void write_data(uchar dat)
+            { 
+                rs=1;
+                P0=dat;
+                delay(5);
+                en=1;
+                delay(5);
+                en=0;
+                } 
+        void init() { 
+            uint i;
+            TMOD=0x01; 
+            TH0=0x4c; 
+            TL0=0x01; 
+            EA=1; 
+            ET0=1; 
+            TR0=1; 
+            rw=0; 
+            en=0; 
+            P2=0xff; 
+            hour=0; 
+            minute=0; 
+            second=0;
+            write_cmd(0x38);
+            write_cmd(0x0c); 
+            write_cmd(0x06); 
+            write_cmd(0x01); 
+            write_cmd(0x80+0x40+3); 
+            for(i=0;i<8;i++)
+            { 
+                write_data(time[i]); 
+            } 
+        } 
+        void write_time(uchar addr,uchar dat) 
+        { uchar shi,ge; 
+            shi=dat/10; 
+            ge=dat%10;
+            write_cmd(0x80+0x40+addr);
+            write_data(0x30+shi); 
+            write_data(0x30+ge); 
+        } 
+        void keyscan() 
+        { if(k1==0) 
+            {
+            delay(100); 
+            if(k1==0) 
+            {
+                TR0=0; key++; while(k1==1); 
+                if(key==1) 
+                { 
+                    write_cmd(0x80+0x40+10); 
+                    write_cmd(0x0f);
+                    delay(1); 
+                } 
+                if(key==2) 
+                { 
+                    write_cmd(0x80+0x40+7); 
+                    write_cmd(0x0f); 
+                    delay(1); 
+                } 
+                if(key==3) 
+                {
+            
+                    write_cmd(0x80+0x40+4); 
+                    write_cmd(0x0f); 
+                    delay(1); 
+                } 
+                if(key==4) 
+                { 
+                    key=0;
+                    delay(1); 
+                } 
+            } 
+        } 
+        if(key!=0) 
+        {
+            if(k0==0)
+             {
+                delay(5); 
+                if(k0==0) 
+                { 
+                    key=0; 
+                    TR0=1;
+                    write_cmd(0x0c); 
+                    delay(100);
+                } 
+             } 
+        } 
+        if(key!=0) 
+        { 
+            if(k2==0)
+             {
+                delay(5); 
+                if(k2==0) 
+                { 
+                    if(key==1) 
+                    {
+                        second++; 
+                        if(second==60) 
+                        { 
+                            second=0;
+                        } 
+                        write_time(9,second);
+            write_cmd(0x80+0x40+10);
+        } 
+         
+        if(key==2) 
+            minute++; 
+            if(minute==60) 
+            { 
+                minute=0; 
+            } 
+            write_time(6,minute);
+            write_cmd(0x80+0x40+7);
+         } 
+         if(key==3) 
+         { 
+            hour++; 
+            if(hour==24) 
+            { 
+                hour=0; 
+            } 
+            write_time(3,hour);
+            write_cmd(0x80+0x40+4); 
+        } 
+        while(k2==0);
+     } 
+    } 
+    if(key!=0) 
+    { 
+        if(k3==0) 
+        { 
+            delay(5); 
+            if(k3==0)
+            { 
+                if(key==1) 
+                {
+                second--;
+                if(second==-1) 
+                { 
+                    second=59; 
+                }
+                 write_time(9,second); 
+                 write_cmd(0x80+0x40+10); 
+                } 
+                if(key==2) 
+                {
+                    minute--; 
+                    if(minute==-1) 
+                    { 
+                        minute=59;
+                     } 
+                     write_time(6,minute); 
+                     write_cmd(0x80+0x40+7); 
+                    } 
+                    if(key==3) 
+                    { 
+                        hour--;
+                        if(hour==-1) 
+                        { 
+                            hour=23; 
+                        } 
+                        write_time(3,hour); 
+                        write_cmd(0x80+0x40+4); 
+                    } 
+                    while(k3==0); 
+                } 
+            } 
+        } 
+    }
+    void main() 
+    {
+            init(); 
+            while(1) 
+            { keyscan();
+                if(t==20) 
+                { 
+                    t=0; 
+                    second++; 
+                    if(second==60) 
+                    { 
+                        second=0; minute++; 
+                        if(minute==60)
+            { 
+                minute=0; 
+                hour++; 
+                if(hour==24) 
+                { 
+                    hour=0;
+                 }
+                  write_time(3,hour);
+                 } 
+                 write_time(6,minute);
+                 }
+            write_time(9,second);
+                }
+         }
+    } 
+         void timer() interrupt 1 
+         { 
+            TH0=0x4c; 
+            TL0=0x01; 
+            t++; }
+
+            </xmp>
+        </pre>
+
+
+</p>
         </div>
 
         <div class="blog-post">
