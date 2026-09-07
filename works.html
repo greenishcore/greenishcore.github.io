@@ -1,95 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="utf-8">
-  <title>Fall beta</title>
-  <link rel="stylesheet" href="dev/dev.css">
-  <style>
-    /* Add common styles for .content class if needed */
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    .pic-w {
-      flex: 0 0 30%;
-      /* Adjust the width as needed */
-      margin: 10px;
-    }
-
-    .pic-w object {
-      width: 100%;
-      height: auto;
-    }
-
-    .navbar {
-      background-color: #f0f0f0;
-      overflow: hidden;
-    }
-
-    .navbar a {
-      float: left;
-      display: block;
-      color: #333;
-      /* Original text color */
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    .navbar a:hover {
-      background-color: #ddd;
-      color: #000;
-      /* Hover text color */
-    }
-
-    .navbar a.active {
-      background-color: #4CAF50;
-      color: #fff;
-      /* Active text color */
-    }
-
-    .footer {
-      background-color: #f0f0f0;
-      padding: 10px 20px;
-      text-align: center;
-    }
-
-    .footer a {
-      color: #333;
-      /* Original text color */
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-      }
-
-      .pic-w {
-        flex: 0 0 100%;
-        margin: 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar a {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        box-sizing: border-box;
-      }
-    }
-  </style>
-  <script type="text/javascript">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Works - Fall beta</title>
+  <meta name="description" content="制图、视觉作品与课程设计索引。">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="image/icon-logo.png">
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script>
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
       t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
@@ -99,23 +20,130 @@
 </head>
 
 <body>
-  <h1>Fall beta</h1>
-  <div class="navbar">
-    <nav>
-      <a href="index.html">Resume</a>
-      <a href="blog.html">Blog</a>
-      <a href="XAUAT.html">Design on XAUAT</a>
-      <a href="works.html">Works</a>
-      <a href="dev.html">Dev</a>
-    </nav>
-  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Fall beta</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-icon" aria-hidden="true"></span>Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
+        <a href="XAUAT.html">Design</a>
+        <a href="works.html" aria-current="page">Works</a>
+        <a href="dev.html">Dev</a>
+        <a href="aboutus.html">About</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="footer">
-    <footer>
-      
-    </footer>
-  </div>
+  <main class="page container" id="main">
+    <div class="page-head">
+      <h1>Works</h1>
+      <p>制图与视觉作品索引。每个条目链接至详情页，可获取矢量图与 PDF 源文件。</p>
+    </div>
+
+    <section class="section">
+      <h2>作品</h2>
+      <div class="grid grid-wide">
+        <article class="card">
+          <figure>
+            <img src="image/xuefucheng.svg" alt="学府城" loading="lazy">
+          </figure>
+          <h3><a href="xuefucheng.html">学府城</a></h3>
+          <p>片区手绘地图，SVG 与 PDF 两种格式。</p>
+        </article>
+        <article class="card">
+          <figure>
+            <img src="image/express.svg" alt="快递点分布" loading="lazy">
+          </figure>
+          <h3><a href="express.html">快递点分布</a></h3>
+          <p>校园快递点位置示意图。</p>
+        </article>
+        <article class="card">
+          <figure>
+            <img src="image/map.svg" alt="校园地图与课程文档" loading="lazy">
+          </figure>
+          <h3><a href="XAUAT.html">校园地图与课程文档</a></h3>
+          <p>校区地图与课程汇报归档。</p>
+        </article>
+        <article class="card">
+          <figure>
+            <img src="image/CBC.jpg" alt="图库" loading="lazy">
+          </figure>
+          <h3><a href="gallery.html">图库</a></h3>
+          <p>合作与投稿作品。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>研究与课程设计</h2>
+      <ul class="post-list">
+        <li>
+          <div class="timeline-title"><a href="blog.html#digital-clock">数字时钟设计</a></div>
+          <div class="timeline-meta">基于 51 单片机与 12MHz 晶振的时钟电路，含 Proteus 仿真与 C 源码。</div>
+        </li>
+        <li>
+          <div class="timeline-title"><a href="blog.html#frequency-meter">基于 STM32 微控制器的频率计设计</a></div>
+          <div class="timeline-meta">测量范围 1Hz–10KHz，LCD 显示波形与频率。</div>
+        </li>
+        <li>
+          <div class="timeline-title"><a href="blog.html#air-quality">西安市空气质量研究</a></div>
+          <div class="timeline-meta">监测点数据清洗、相关性分析与可视化，基于 pandas 与 matplotlib。</div>
+        </li>
+        <li>
+          <div class="timeline-title"><a href="blog.html#eeg-classification">基于 32 导 EEG 检测技术的复杂多运动实验设计与分类研究</a></div>
+          <div class="timeline-meta">信号滤波、滑动窗口切分与分类模型训练结果。</div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2>Site</h2>
+          <ul class="link-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="XAUAT.html">Design</a></li>
+            <li><a href="works.html">Works</a></li>
+            <li><a href="dev.html">Dev</a></li>
+            <li><a href="aboutus.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Campus</h2>
+          <ul class="link-list">
+            <li><a href="http://www.xauat.edu.cn/">学校官网</a></li>
+            <li><a href="http://mail.xauat.edu.cn/">校园邮箱</a></li>
+            <li><a href="http://jwc.xauat.edu.cn/">教务网</a></li>
+            <li><a href="http://xk.xauat.edu.cn/">选课</a></li>
+            <li><a href="http://lib.xauat.edu.cn/">图书馆</a></li>
+            <li><a href="http://10.186.255.33/">校园网自服务</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyrl.html">校历</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyjt.html">校车</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul class="link-list">
+            <li><a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">LinkedIn</a></li>
+            <li><a href="resume.html">Resume</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">Fall beta &middot; 西安建筑科技大学 &middot; 静态站点，由 GitHub Pages 托管</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
 
 </html>

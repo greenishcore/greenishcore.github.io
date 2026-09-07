@@ -1,68 +1,170 @@
 <!DOCTYPE html>
-<html ang="en">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Fall beta</title>
-    <link rel="stylesheet" href="dev/dev.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume - Fall beta</title>
+  <meta name="description" content="Resume of Yiyang Zhang: education, experience, awards and online course certificates.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="image/icon-logo.png">
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "ksvh6xzm3w");
+  </script>
 </head>
 
 <body>
-    <h1>Fall beta</h1>
-    <div class="navbar">
-        <nav>
-            <a href="resume.html">Resume</a>
-            <a href="blog.html">Blog</a>
-            <a href="XAUAT.html">Design on XAUAT</a>
-            <a href="works.html">Works</a>
-            <a href="dev.html">Dev</a>
-        </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Fall beta</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-icon" aria-hidden="true"></span>Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="resume.html" aria-current="page">Resume</a>
+        <a href="blog.html">Blog</a>
+        <a href="XAUAT.html">Design</a>
+        <a href="works.html">Works</a>
+        <a href="dev.html">Dev</a>
+        <a href="aboutus.html">About</a>
+      </nav>
     </div>
-    <div class="status">
-        <h2>test</h2>
+  </header>
+
+  <main class="page container" id="main">
+    <div class="page-head">
+      <h1>Resume</h1>
+      <p>Yiyang Zhang &middot; Automation engineering technology &middot; Shaanxi, China</p>
     </div>
 
-    <div class="content">
+    <section class="section">
+      <h2>Profile</h2>
+      <dl class="data-list">
+        <dt>Name</dt>
+        <dd><span lang="zh-CN">张祎杨</span> / Yiyang Zhang</dd>
+        <dt>Email</dt>
+        <dd><code>YTE4ODI5MjA2MDQ1QG91dGxvb2suY29t</code> (base64)</dd>
+        <dt>Phone</dt>
+        <dd><code>MTg4MjkyMDYwNDU=</code> (base64)</dd>
+        <dt>Location</dt>
+        <dd>Shaanxi, China</dd>
+      </dl>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <ul class="timeline">
+        <li>
+          <div class="timeline-title">Xi&#39;an University of Architecture and Technology</div>
+          <div class="timeline-meta">Bachelor, Automation Engineering Technology &middot; 2019 &ndash; 2023 &middot; Shaanxi, China</div>
+        </li>
+        <li>
+          <div class="timeline-title">Chang&#39;an No.1 Middle High School</div>
+          <div class="timeline-meta">Secondary / High School &middot; 2015 &ndash; 2018 &middot; Shaanxi, China</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Experience and awards</h2>
+      <ul class="timeline">
+        <li>
+          <div class="timeline-title">Volunteer, &ldquo;Back to school presentation&rdquo;</div>
+          <div class="timeline-meta">Xi&#39;an University of Architecture and Technology &middot; January 2020 &ndash; February 2020</div>
+        </li>
+        <li>
+          <div class="timeline-title">Third-Class Scholarship</div>
+          <div class="timeline-meta">Academic year 2020 &ndash; 2021</div>
+        </li>
+        <li>
+          <div class="timeline-title">Third-Class Scholarship</div>
+          <div class="timeline-meta">Academic year 2021 &ndash; 2022</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Certificates</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Deep Learning</h3>
+          <p>Coursera</p>
+          <div class="card-actions">
+            <a class="button" href="https://coursera.org/share/eb67de3edd3efd2f932d40f34467a683">Verify</a>
+            <a class="button" href="image/Coursera%20KJGDH4EF2UY4.pdf">PDF</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Django</h3>
+          <p>Coursera</p>
+          <div class="card-actions">
+            <a class="button" href="https://coursera.org/share/5a34201925332cb8e7932b53f6ac5fca">Verify</a>
+            <a class="button" href="image/Coursera%20MRK63PHLWDQ7.pdf">PDF</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Links</h2>
+      <ul class="link-list">
+        <li><a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">LinkedIn</a></li>
+        <li><a href="blog.html">Project notes</a></li>
+        <li><a href="XAUAT.html">Design work</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-            <p>
-                <h2>Resume</h2>
-                <h3>Name</h3>
-                祎杨 张<br>
-                Yiyang Zhang<br>
-                <h3>Email</h3>
-                YTE4ODI5MjA2MDQ1QG91dGxvb2suY29t(base64)<br>
-                <h3>Home</h3>
-                Shaanxi<br>
-                China<br>
-                <h3>Mobile phone</h3>
-                MTg4MjkyMDYwNDU= (base64)<br>
-                <h3>Experience</h3>
-                student<br>
-                Xi'an University of Architecture and Technology<br>
-                January 2020 - February 2020
-                volunteer to "Back to school presentation".<br>
-                Third-Class Scholarship Awarded on 2020-2021<br>
-                Third-Class Scholarship Awarded on 2021-2022<br>
-                <h3>Education</h3>
-                Xi'an University of Architecture and Technology<br>
-                Bachelors (or equivalent), Automation Engineer Technology/Technician<br>
-                2019 - 2023 | Shaanxi , China<br>
-                Chang'an No.1 middle high<br>
-                Secondary/High School (or equivalent),<br>
-                2015 - 2018 | Shaanxi , China<br>
-
-                <h3>Linkedin</h3>
-                <a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">Linkedin</a>
-            </p>
+          <h2>Site</h2>
+          <ul class="link-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="XAUAT.html">Design</a></li>
+            <li><a href="works.html">Works</a></li>
+            <li><a href="dev.html">Dev</a></li>
+            <li><a href="aboutus.html">About</a></li>
+          </ul>
         </div>
+        <div>
+          <h2>Campus</h2>
+          <ul class="link-list" lang="zh-CN">
+            <li><a href="http://www.xauat.edu.cn/">学校官网</a></li>
+            <li><a href="http://mail.xauat.edu.cn/">校园邮箱</a></li>
+            <li><a href="http://jwc.xauat.edu.cn/">教务网</a></li>
+            <li><a href="http://xk.xauat.edu.cn/">选课</a></li>
+            <li><a href="http://lib.xauat.edu.cn/">图书馆</a></li>
+            <li><a href="http://10.186.255.33/">校园网自服务</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyrl.html">校历</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyjt.html">校车</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul class="link-list">
+            <li><a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">LinkedIn</a></li>
+            <li><a href="resume.html">Resume</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note" lang="zh-CN">Fall beta &middot; 西安建筑科技大学 &middot; 静态站点，由 GitHub Pages 托管</p>
     </div>
+  </footer>
 
-
-    <div class="footer">
-        <footer>
-            <a href="http://www.xauat.edu.cn/">学校官网</a>
-
-        </footer>
-    </div>
+  <script src="js/site.js" defer></script>
 </body>
-<html>
+
+</html>
