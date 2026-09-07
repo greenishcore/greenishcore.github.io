@@ -1,30 +1,133 @@
 <!DOCTYPE html>
-<html ang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Fall beta</title>
-    <link rel="stylesheet" href="dev/dev.css">
-   </head>
-  <body>
-    <h1>Fall beta</h1>
-    <nav>
-      <a href="index.html">HOME</a>
-    </nav>
-    <h2>breath test</h2>
-  
-    <h3>pic png</h3>
-    <img  src="image/xuefucheng.png" width="50%%" height="50%%" alt="map">
-    <img  src="image/1.jpg" width="50%%" height="50%%" alt="map">
+<html lang="zh-CN">
 
-  <footer>
-  <a href="http://www.xauat.edu.cn/">学校官网</a>
-  <a href="http://mail.xauat.edu.cn/">校园邮箱</a>
-  <a href="http://jwc.xauat.edu.cn/">教务网</a>
-  <a href="http://xk.xauat.edu.cn/">选课</a>
-  <a href="http://lib.xauat.edu.cn/">图书馆</a>
-  <a href="10.186.255.33">校园网自服务</a>
-  <a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyrl.html">校历</a>
-  <a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyjt.html">校车</a>
-</footer>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dev - Fall beta</title>
+  <meta name="description" content="站点结构、响应式断点说明与位图素材。">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="image/icon-logo.png">
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "ksvh6xzm3w");
+  </script>
+</head>
 
-  </body>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Fall beta</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-icon" aria-hidden="true"></span>Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
+        <a href="XAUAT.html">Design</a>
+        <a href="works.html">Works</a>
+        <a href="dev.html" aria-current="page">Dev</a>
+        <a href="aboutus.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page container" id="main">
+    <div class="page-head">
+      <h1>Dev</h1>
+      <p>站点的结构与排版约定，以及位图素材的对照版本。</p>
+    </div>
+
+    <section class="section">
+      <h2>站点结构</h2>
+      <div class="prose">
+        <p>站点为纯静态页面，由 GitHub Pages 直接托管，无构建步骤。全部页面共用
+          <code>css/site.css</code> 与 <code>js/site.js</code>，页面内不再保留局部样式表。</p>
+        <ul>
+          <li><code>css/site.css</code>：设计变量、版式、组件与响应式规则。</li>
+          <li><code>js/site.js</code>：仅负责窄屏导航的展开与收起；脚本不可用时导航保持展开。</li>
+          <li><code>image/</code>、<code>pdf/</code>：图像与文档资源。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>断点</h2>
+      <div class="prose">
+        <ul>
+          <li>&le; 719px：单列布局，导航折叠为菜单，栅格降为一列。</li>
+          <li>720px &ndash; 1023px：两列栅格，导航展开为横排。</li>
+          <li>&ge; 1024px：内容宽度上限 1120px，栅格按 260px 最小列宽自动填充。</li>
+        </ul>
+        <p>正文宽度限制为 74 个字符，字号与间距使用 <code>clamp()</code> 随视口连续变化；
+          颜色跟随系统的浅色或深色偏好切换。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>位图素材</h2>
+      <div class="figure-grid">
+        <figure>
+          <img src="image/xuefucheng.png" alt="学府城地图位图版本" loading="lazy">
+          <figcaption>学府城地图 &middot; PNG &middot; 609 KB</figcaption>
+        </figure>
+        <figure>
+          <img src="image/1.jpg" alt="素材图" loading="lazy">
+          <figcaption>素材图 &middot; JPG &middot; 100 KB</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2>Site</h2>
+          <ul class="link-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="XAUAT.html">Design</a></li>
+            <li><a href="works.html">Works</a></li>
+            <li><a href="dev.html">Dev</a></li>
+            <li><a href="aboutus.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Campus</h2>
+          <ul class="link-list">
+            <li><a href="http://www.xauat.edu.cn/">学校官网</a></li>
+            <li><a href="http://mail.xauat.edu.cn/">校园邮箱</a></li>
+            <li><a href="http://jwc.xauat.edu.cn/">教务网</a></li>
+            <li><a href="http://xk.xauat.edu.cn/">选课</a></li>
+            <li><a href="http://lib.xauat.edu.cn/">图书馆</a></li>
+            <li><a href="http://10.186.255.33/">校园网自服务</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyrl.html">校历</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyjt.html">校车</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul class="link-list">
+            <li><a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">LinkedIn</a></li>
+            <li><a href="resume.html">Resume</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">Fall beta &middot; 西安建筑科技大学 &middot; 静态站点，由 GitHub Pages 托管</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js" defer></script>
+</body>
+
+</html>

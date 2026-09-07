@@ -1,96 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fall beta</title>
-  <link rel="stylesheet" href="dev/dev.css">
-  <style>
-    /* Add common styles for .content class if needed */
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    .pic-w {
-      flex: 0 0 30%;
-      /* Adjust the width as needed */
-      margin: 10px;
-    }
-
-    .pic-w object {
-      width: 100%;
-      height: auto;
-    }
-
-    .navbar {
-      background-color: #f0f0f0;
-      overflow: hidden;
-    }
-
-    .navbar a {
-      float: left;
-      display: block;
-      color: #333;
-      /* Original text color */
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    .navbar a:hover {
-      background-color: #ddd;
-      color: #000;
-      /* Hover text color */
-    }
-
-    .navbar a.active {
-      background-color: #4CAF50;
-      color: #fff;
-      /* Active text color */
-    }
-
-    .footer {
-      background-color: #f0f0f0;
-      padding: 10px 20px;
-      text-align: center;
-    }
-
-    .footer a {
-      color: #333;
-      /* Original text color */
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-      }
-
-      .pic-w {
-        flex: 0 0 100%;
-        margin: 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar a {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        box-sizing: border-box;
-      }
-    }
-  </style>
-
-  <script type="text/javascript">
+  <meta name="description" content="张祎杨的个人站点：课程设计、数据分析记录与校园主题制图作品。">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="image/icon-logo.png">
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script>
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
       t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
@@ -100,67 +20,126 @@
 </head>
 
 <body>
-  <h1>Fall beta</h1>
-  <div class="navbar">
-    <nav>
-      <a href="index.html">Resume</a>
-      <a href="blog.html">Blog</a>
-      <a href="XAUAT.html">Design on XAUAT</a>
-      <a href="works.html">Works</a>
-      <a href="dev.html">Dev</a>
-    </nav>
-  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="content">
-  <div>
-    <p>
-    <h2>Resume</h2>
-    <h3>Name</h3>
-    祎杨 张<br>
-    Yiyang Zhang<br>
-    <h3>Email</h3>
-    YTE4ODI5MjA2MDQ1QG91dGxvb2suY29t(base64)<br>
-    <h3>Home</h3>
-    Shaanxi<br>
-    China<br>
-    <h3>Mobile phone</h3>
-    MTg4MjkyMDYwNDU= (base64)<br>
-    <h3>Experience</h3>
-    student<br>
-    Xi'an University of Architecture and Technology<br>
-    January 2020 - February 2020
-    volunteer to "Back to school presentation".<br>
-    Third-Class Scholarship Awarded on 2020-2021<br>
-    Third-Class Scholarship Awarded on 2021-2022<br>
-    <h3>Education</h3>
-    Xi'an University of Architecture and Technology<br>
-    Bachelors (or equivalent), Automation Engineer Technology/Technician<br>
-    2019 - 2023 | Shaanxi , China<br>
-    Chang'an No.1 middle high<br>
-    Secondary/High School (or equivalent),<br>
-    2015 - 2018 | Shaanxi , China<br>
-    <h3>Cousera</h3>
-    <a href="https://coursera.org/share/eb67de3edd3efd2f932d40f34467a683">Deep Learning</a>
-    <a href="image\Coursera KJGDH4EF2UY4.pdf">Get the pdf</a><br>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Fall beta</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-icon" aria-hidden="true"></span>Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="blog.html">Blog</a>
+        <a href="XAUAT.html">Design</a>
+        <a href="works.html">Works</a>
+        <a href="dev.html">Dev</a>
+        <a href="aboutus.html">About</a>
+      </nav>
+    </div>
+  </header>
 
+  <main class="page container" id="main">
+    <div class="page-head">
+      <h1>Fall beta</h1>
+      <p>张祎杨（Yiyang Zhang）的个人站点。收录自动化专业的课程设计、数据分析记录与校园主题制图作品。</p>
+    </div>
 
-    
-    <a href="https://coursera.org/share/5a34201925332cb8e7932b53f6ac5fca">Django</a>
-    <a href="image\Coursera MRK63PHLWDQ7.pdf">Get the pdf</a><br>
-    
-    
-    <h3>Linkedin</h3>
-    <a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">Linkedin</a>
-    </p>
-  </div>
-</div>
+    <section class="section">
+      <h2>栏目</h2>
+      <div class="grid">
+        <article class="card">
+          <h3><a href="resume.html">Resume</a></h3>
+          <p>教育经历、课程实践与在线课程证书。</p>
+        </article>
+        <article class="card">
+          <h3><a href="blog.html">Blog</a></h3>
+          <p>课程设计与研究记录：单片机时钟、STM32 频率计、空气质量分析、EEG 信号分类。</p>
+        </article>
+        <article class="card">
+          <h3><a href="XAUAT.html">Design</a></h3>
+          <p>校园主题制图与课程汇报文档归档。</p>
+        </article>
+        <article class="card">
+          <h3><a href="works.html">Works</a></h3>
+          <p>制图与视觉作品索引，按主题分组。</p>
+        </article>
+        <article class="card">
+          <h3><a href="dev.html">Dev</a></h3>
+          <p>站点结构、栅格与断点说明，以及位图素材。</p>
+        </article>
+        <article class="card">
+          <h3><a href="aboutus.html">About</a></h3>
+          <p>歌单、社群与联系方式。</p>
+        </article>
+      </div>
+    </section>
 
-  <div class="footer">
-    <footer>
-      <a href="http://www.xauat.edu.cn/">学校官网</a>
-     
-    </footer>
-  </div>
+    <section class="section">
+      <h2>最近记录</h2>
+      <ul class="post-list">
+        <li>
+          <div class="timeline-title"><a href="blog.html#digital-clock">数字时钟设计</a></div>
+          <div class="timeline-meta"><time datetime="2024-01-10">2024-01-10</time> &middot; 基于 51 单片机与 12MHz 晶振的时钟电路，含 Proteus 仿真与 C 源码。</div>
+        </li>
+        <li>
+          <div class="timeline-title"><a href="blog.html#frequency-meter">基于 STM32 微控制器的频率计设计</a></div>
+          <div class="timeline-meta"><time datetime="2024-01-15">2024-01-15</time> &middot; 测量范围 1Hz–10KHz，LCD 显示波形与频率。</div>
+        </li>
+        <li>
+          <div class="timeline-title"><a href="blog.html#air-quality">西安市空气质量研究</a></div>
+          <div class="timeline-meta"><time datetime="2024-01-15">2024-01-15</time> &middot; 监测点数据清洗、相关性分析与可视化，基于 pandas 与 matplotlib。</div>
+        </li>
+        <li>
+          <div class="timeline-title"><a href="blog.html#eeg-classification">基于 32 导 EEG 检测技术的复杂多运动实验设计与分类研究</a></div>
+          <div class="timeline-meta"><time datetime="2024-01-17">2024-01-17</time> &middot; 信号滤波、滑动窗口切分与分类模型训练结果。</div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2>Site</h2>
+          <ul class="link-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="XAUAT.html">Design</a></li>
+            <li><a href="works.html">Works</a></li>
+            <li><a href="dev.html">Dev</a></li>
+            <li><a href="aboutus.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Campus</h2>
+          <ul class="link-list">
+            <li><a href="http://www.xauat.edu.cn/">学校官网</a></li>
+            <li><a href="http://mail.xauat.edu.cn/">校园邮箱</a></li>
+            <li><a href="http://jwc.xauat.edu.cn/">教务网</a></li>
+            <li><a href="http://xk.xauat.edu.cn/">选课</a></li>
+            <li><a href="http://lib.xauat.edu.cn/">图书馆</a></li>
+            <li><a href="http://10.186.255.33/">校园网自服务</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyrl.html">校历</a></li>
+            <li><a href="http://www.xauat.edu.cn/zh-cn/html/12xxfw/xyjt.html">校车</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul class="link-list">
+            <li><a href="https://www.linkedin.com/in/%E7%A5%8E%E6%9D%A8-%E5%BC%A0-300009167/">LinkedIn</a></li>
+            <li><a href="resume.html">Resume</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">Fall beta &middot; 西安建筑科技大学 &middot; 静态站点，由 GitHub Pages 托管</p>
+    </div>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
 
 </html>
