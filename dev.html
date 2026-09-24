@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dev - Fall beta</title>
-  <meta name="description" content="站点结构、响应式断点说明与位图素材。">
-  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="站点结构、共栅照排说明与位图素材。">
+  <meta name="color-scheme" content="light">
   <link rel="icon" href="image/icon-logo.png">
   <link rel="stylesheet" href="css/site.css">
   <script>document.documentElement.classList.add('js');</script>
@@ -52,23 +52,25 @@
         <p>站点为纯静态页面，由 GitHub Pages 直接托管，无构建步骤。全部页面共用
           <code>css/site.css</code> 与 <code>js/site.js</code>，页面内不再保留局部样式表。</p>
         <ul>
-          <li><code>css/site.css</code>：设计变量、版式、组件与响应式规则。</li>
-          <li><code>js/site.js</code>：仅负责窄屏导航的展开与收起；脚本不可用时导航保持展开。</li>
+          <li><code>css/site.css</code>：共栅令牌、版式、组件与响应式规则。</li>
+          <li><code>js/site.js</code>：窄屏导航的展开与收起，以及图版高度的整行吸附；脚本不可用时导航保持展开。</li>
           <li><code>image/</code>、<code>pdf/</code>：图像与文档资源。</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>断点</h2>
+      <h2>栅格</h2>
       <div class="prose">
+        <p>版式采用共栅照排：纵向尺寸都是共栅量子 Q 的整数行，横向尺寸都是正文字身 em 的整数倍。中文行距与西文行距为 5 : 4，Q 等于 4 个中文行或 5 个西文行，因此中文页面与英文页面（Resume）共用同一套格线，只有行距不同。</p>
         <ul>
-          <li>&le; 719px：单列布局，导航折叠为菜单，栅格降为一列。</li>
-          <li>720px &ndash; 1023px：两列栅格，导航展开为横排。</li>
-          <li>&ge; 1024px：内容宽度上限 1120px，栅格按 260px 最小列宽自动填充。</li>
+          <li>正文 1em；中文行距 1.789em，西文行距 1.431em。</li>
+          <li>4 栏 × 11em，栏距 2em，版心 50em；正文跨 2 栏，每行 24 字。</li>
+          <li>标题不换字号、不加粗，只用颜色与位置区分；段间空一整行，中文首行缩进 2em。</li>
+          <li>分隔线以背景绘制，不占高度；图片、代码与嵌入内容由 <code>js/site.js</code> 补齐到整行。</li>
+          <li>&ge; 864px：标题悬于第 1 栏，内容占 2&ndash;4 栏；更窄时降为单栏，导航在 719px 以下折叠为菜单。</li>
         </ul>
-        <p>正文宽度限制为 74 个字符，字号与间距使用 <code>clamp()</code> 随视口连续变化；
-          颜色跟随系统的浅色或深色偏好切换。</p>
+        <p>打印时 1em 取 9.5pt，同一组令牌即得到 A4 印刷几何：版心 475pt，Q = 68pt，页码 7pt，位于地脚外缘、距版心一个栏距。</p>
       </div>
     </section>
 
