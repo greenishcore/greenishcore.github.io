@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog - Fall beta</title>
   <meta name="description" content="课程设计与研究记录：51 单片机数字时钟、STM32 频率计、西安市空气质量分析与 32 导 EEG 分类研究。">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <link rel="icon" href="image/icon-logo.png">
   <link rel="stylesheet" href="css/site.css">
   <script>document.documentElement.classList.add('js');</script>
@@ -69,8 +69,10 @@
     </nav>
 
     <article class="post" id="digital-clock">
-      <h2>数字时钟设计</h2>
-      <p class="meta"><time datetime="2024-01-10">2024-01-10</time> &middot; 51 单片机 / Proteus</p>
+      <header class="post-head">
+        <h2>数字时钟设计</h2>
+        <p class="meta"><time datetime="2024-01-10">2024-01-10</time> &middot; 51 单片机 / Proteus</p>
+      </header>
       <div class="post-body">
         <h3>设计内容</h3>
         <ol>
@@ -336,8 +338,10 @@ void main()
     </article>
 
     <article class="post" id="frequency-meter">
-      <h2>基于 STM32 微控制器的频率计设计</h2>
-      <p class="meta"><time datetime="2024-01-15">2024-01-15</time> &middot; STM32 / LCD</p>
+      <header class="post-head">
+        <h2>基于 STM32 微控制器的频率计设计</h2>
+        <p class="meta"><time datetime="2024-01-15">2024-01-15</time> &middot; STM32 / LCD</p>
+      </header>
       <div class="post-body">
         <p>设计任务：利用 STM32 微控制器设计一数字频率计，采用 LCD 显示波形、频率。测量信号频率范围为 1Hz&ndash;10KHz。</p>
       </div>
@@ -581,8 +585,10 @@ for (o=0;o&lt;360;o++) { buf[o]=0; } POINT_COLOR=RED; LCD_ShowString(10,40,260,3
     </article>
 
     <article class="post" id="air-quality">
-      <h2>西安市空气质量研究</h2>
-      <p class="meta"><time datetime="2024-01-15">2024-01-15</time> &middot; pandas / matplotlib</p>
+      <header class="post-head">
+        <h2>西安市空气质量研究</h2>
+        <p class="meta"><time datetime="2024-01-15">2024-01-15</time> &middot; pandas / matplotlib</p>
+      </header>
       <div class="post-body">
         <p>基于监测点数据完成缺失值处理、相关性分析与可视化。所有 Python 代码均于 Jupyter Notebook 运行，可在上交附件的 .ipynb 文件中阅览。</p>
       </div>
@@ -996,8 +1002,10 @@ if 0.0 &lt;= pm_val &lt; 36.0: iaqi=cal_linear(0.0, 50.0, 0.0, 35.0, pm_val) eli
     </article>
 
     <article class="post" id="eeg-classification">
-      <h2>基于 32 导 EEG 检测技术的复杂多运动实验设计与分类研究</h2>
-      <p class="meta"><time datetime="2024-01-17">2024-01-17</time> &middot; EEG / 分类模型</p>
+      <header class="post-head">
+        <h2>基于 32 导 EEG 检测技术的复杂多运动实验设计与分类研究</h2>
+        <p class="meta"><time datetime="2024-01-17">2024-01-17</time> &middot; EEG / 分类模型</p>
+      </header>
       <div class="figure-grid">
         <figure>
           <img src="image/EEG.png" alt="32 导 EEG 电极分布" loading="lazy">
